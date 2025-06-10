@@ -14,8 +14,29 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.pushButton_login.clicked.connect(self.login)
+        
+    def login(self):
+        credentials = {"admin": "password"}
+        sso_id = self.ui.lineEdit_ssonumber.text()
+        password = self.ui.lineEdit_password.text()
 
+        # Clear inputs after getting text
+        self.ui.lineEdit_ssonumber.clear()
+        self.ui.lineEdit_password.clear()
 
+        # Login logic
+        if sso_id in credentials:
+            if credentials[sso_id] == password:
+                self.ui.label_message.setText("Login successful!")
+                # Move to second page
+                if hasattr(self.ui, "stackedWidget"):
+                    self.ui.stackedWidget.setCurrentIndex(1)
+            else:
+                self.ui.label_message.setText("Incorrect password!")
+        else:
+            self.ui.label_message.setText("SSO number not found!")
+            
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
