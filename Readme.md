@@ -1,5 +1,5 @@
-Initial Push
-adding text 
-line3 added
+#previous cmts removed
 
-extra working
+1.form.ui,ui_form.py,mainwidow.py --> mainwindow
+
+need to add second window and tabs
