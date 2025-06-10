@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QSpacerItem, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -26,45 +26,40 @@ class Ui_MainWindow(object):
         MainWindow.resize(551, 446)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout = QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.lineEdit_ssonumber = QLineEdit(self.centralwidget)
-        self.lineEdit_ssonumber.setObjectName(u"lineEdit_ssonumber")
-
-        self.gridLayout.addWidget(self.lineEdit_ssonumber, 2, 0, 1, 2)
-
-        self.pushButton_login = QPushButton(self.centralwidget)
-        self.pushButton_login.setObjectName(u"pushButton_login")
-
-        self.gridLayout.addWidget(self.pushButton_login, 6, 0, 1, 1)
-
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalSpacer_top = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout.addItem(self.verticalSpacer_top, 0, 0, 1, 2)
+        self.verticalLayout.addItem(self.verticalSpacer_top)
 
         self.label_ssonumber = QLabel(self.centralwidget)
         self.label_ssonumber.setObjectName(u"label_ssonumber")
 
-        self.gridLayout.addWidget(self.label_ssonumber, 1, 0, 1, 2)
+        self.verticalLayout.addWidget(self.label_ssonumber, 0, Qt.AlignmentFlag.AlignHCenter)
 
-        self.pushButton_register = QPushButton(self.centralwidget)
-        self.pushButton_register.setObjectName(u"pushButton_register")
+        self.lineEdit_ssonumber = QLineEdit(self.centralwidget)
+        self.lineEdit_ssonumber.setObjectName(u"lineEdit_ssonumber")
 
-        self.gridLayout.addWidget(self.pushButton_register, 6, 1, 1, 1)
+        self.verticalLayout.addWidget(self.lineEdit_ssonumber, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.label_password = QLabel(self.centralwidget)
         self.label_password.setObjectName(u"label_password")
 
-        self.gridLayout.addWidget(self.label_password, 4, 0, 1, 2)
+        self.verticalLayout.addWidget(self.label_password, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.lineEdit_password = QLineEdit(self.centralwidget)
         self.lineEdit_password.setObjectName(u"lineEdit_password")
 
-        self.gridLayout.addWidget(self.lineEdit_password, 5, 0, 1, 2)
+        self.verticalLayout.addWidget(self.lineEdit_password, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        self.pushButton_login = QPushButton(self.centralwidget)
+        self.pushButton_login.setObjectName(u"pushButton_login")
+
+        self.verticalLayout.addWidget(self.pushButton_login, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.verticalSpacer_bottom = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout.addItem(self.verticalSpacer_bottom, 7, 0, 1, 2)
+        self.verticalLayout.addItem(self.verticalSpacer_bottom)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -82,9 +77,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton_login.setText(QCoreApplication.translate("MainWindow", u"LOGIN", None))
         self.label_ssonumber.setText(QCoreApplication.translate("MainWindow", u"SSO NUMBER", None))
-        self.pushButton_register.setText(QCoreApplication.translate("MainWindow", u"REGISTER", None))
         self.label_password.setText(QCoreApplication.translate("MainWindow", u"PASSWORD", None))
+        self.pushButton_login.setText(QCoreApplication.translate("MainWindow", u"LOGIN", None))
     # retranslateUi
 
