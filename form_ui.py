@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_ssonumber.setText(QCoreApplication.translate("MainWindow", u"SSO NUMBER", None))
+        self.label_ssonumber.setText(QCoreApplication.translate("MainWindow", u"USERNAME", None))
         self.label_password.setText(QCoreApplication.translate("MainWindow", u"PASSWORD", None))
         self.pushButton_login.setText(QCoreApplication.translate("MainWindow", u"LOGIN", None))
         self.label_message.setText("")

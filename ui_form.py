@@ -11,15 +11,14 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QStatusBar, QWidget)
+    QLineEdit, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QStatusBar,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -117,20 +116,14 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 743, 21))
-        self.menuBACK = QMenu(self.menubar)
-        self.menuBACK.setObjectName(u"menuBACK")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditUndo))
-        self.menuBACK.setIcon(icon)
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.menubar.addAction(self.menuBACK.menuAction())
-
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -138,11 +131,10 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_ssonumber.setText(QCoreApplication.translate("MainWindow", u"SSO NUMBER", None))
+        self.label_ssonumber.setText(QCoreApplication.translate("MainWindow", u"USERNAME", None))
         self.label_password.setText(QCoreApplication.translate("MainWindow", u"PASSWORD", None))
         self.pushButton_login.setText(QCoreApplication.translate("MainWindow", u"LOGIN", None))
         self.label_message.setText("")
         self.label_pastelink.setText(QCoreApplication.translate("MainWindow", u"Paste the link", None))
-        self.menuBACK.setTitle(QCoreApplication.translate("MainWindow", u"BACK", None))
     # retranslateUi
 
