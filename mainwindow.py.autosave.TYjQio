@@ -1,0 +1,39 @@
+# This Python file uses the following encoding: utf-8
+import sys
+
+from PySide6.QtWidgets import QApplication, QMainWindow
+
+# Important:
+# You need to run the following command to generate the ui_form.py file
+#     pyside6-uic form.ui -o ui_form.py, or
+#     pyside2-uic form.ui -o ui_form.py
+from ui_form import Ui_MainWindow
+
+class MainWindow(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.ui.pushButton_login.clicked.connect(self.login)
+        
+    def login(self):
+        credentials = {"admin": "password"}
+        sso_id = self.ui.lineEdit_ssonumber.text()
+        password = self.ui.lineEdit_password.text()
+        self.ui.lineEdit_ssonumber.clear()
+        self.ui.lineEdit_password.clear()
+        if sso_id in credentials:
+            if credentials[sso_id] == password:
+                self.ui.label_message.setText("Login successful!")
+                if hasattr(self.ui, "stackedWidget"):
+                    self.ui.stackedWidget.setCurrentIndex(1)
+            else:
+                self.ui.label_message.setText("Incorrect password!")
+        else:
+            self.ui.label_message.setText("SSO number not found!")
+            
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    widget = MainWindow()
+    widget.show()
+    sys.exit(app.exec())
