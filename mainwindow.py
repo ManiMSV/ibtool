@@ -2,8 +2,8 @@
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtCore import QUrl
 from ui_form import Ui_MainWindow
-
 from database import init_db, register_user, validate_user
 
 class MainWindow(QMainWindow):
@@ -12,22 +12,17 @@ class MainWindow(QMainWindow):
         init_db()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
-        # Web browser
         self.web_view = QWebEngineView()
-        self.ui.gridLayout_3.addWidget(self.web_view, 1, 0, 1, 2)
-
-        # Signals
+        layout = self.ui.page_3.layout()
+        layout.replaceWidget(self.ui.textBrowser, self.web_view)
+        self.ui.textBrowser.deleteLater()
+        self.ui.pushButton_go.clicked.connect(self.display_link)
         self.ui.pushButton_login.clicked.connect(self.login)
         self.ui.pushButton_register.clicked.connect(self.register)
         self.ui.pushButton_register_1.clicked.connect(self.show_register_page)
-        self.ui.pushButton_go.clicked.connect(self.display_link)
-
-        # Menu
         self.menuBACK = self.ui.menubar.addMenu("MENU")
         self.actionBack = self.menuBACK.addAction("Go Back")
         self.actionBack.triggered.connect(self.go_back)
-
         self.ui.stackedWidget.setCurrentIndex(0)
         self.logged_in = False
 
@@ -73,11 +68,12 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(current_index - 1)
 
     def display_link(self):
-        url = self.ui.lineEdit_link.text().strip()
-        if url:
-            if not url.startswith(("http://", "https://")):
-                url = "https://" + url
-            self.web_view.load(url)
+        url_text = self.ui.lineEdit_link.text().strip()
+        if not url_text:
+            return
+        if not url_text.startswith("http"):
+            url_text = "http://" + url_text
+        self.web_view.load(QUrl(url_text))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
